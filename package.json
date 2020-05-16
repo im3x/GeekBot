@@ -1,0 +1,22 @@
+{
+  "name": "github-actions-study",
+  "version": "1.0.0",
+  "description": "just for study",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/safe-dog/github-actions-study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/safe-dog/github-actions-study/issues"
+  },
+  "homepage": "https://github.com/safe-dog/github-actions-study#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
