@@ -13,7 +13,11 @@
 ## 彩云天气配置
 在项目`settings`->`Secrets` 中，添加：
 1. `caiyun_key`，为彩云API的开发者令牌（前往[彩云天气开发者中心](https://dashboard.caiyunapp.com/)申请），或使用官方测试KEY（仅供测试）：`TAkhjf8d1nlSlspN`
-2. `caiyun_gps`，为要获取的天气的GPS坐标，可在[百度地图GPS获取](https://api.map.baidu.com/lbsapi/getpoint/index.html)页面获取后复制，多个GPS坐标请用`|`符号分割
+2. `caiyun_gps`，为要获取的天气的GPS坐标，可在[百度地图GPS获取](https://api.map.baidu.com/lbsapi/getpoint/index.html)页面获取后复制，多个GPS坐标请用`|`符号分割，地名在坐标后用`@`符号链接
+
+`caiyun_gps` 格式如下：
+> `111.22,333.44@地址1|444.55,555.66@地址2`
+
 
 ## 注意
 cron 时间为美国时间，需要北京时间减去8小时设置。

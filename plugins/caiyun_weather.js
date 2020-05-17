@@ -20,25 +20,26 @@ class Plugin extends Bot {
     // 判断是否是多gps
     const _gps = this.GPS.split('|');
     _gps.map(async gps => {
-      const api = `https://api.caiyunapp.com/v2.5/${this.API_KEY}/${gps}/weather.json?alert=true`;
+      const tmp = gps.split('@');
+      const api = `https://api.caiyunapp.com/v2.5/${this.API_KEY}/${tmp[0]}/weather.json?alert=true`;
       await axios.get(api).then(async res => {
         const { data } = res;
-        await this._sendData(data);
+        await this._sendData(data, tmp[1]);
       })
     });
   }
 
-  async _sendData (data) {
+  async _sendData (data, addr = '') {
     // 预警信息
     let alert_md = '';
     if (data.result.alert.content.length > 0) {
-      alert_md += '## ⚠ 天气预警\n';
+      alert_md += '天气预警 ⚠\n';
       data.result.alert.content.map(a => {
-        alert_md += `**${a.title}**\n> ${a.description}\n\n`;
+        alert_md += `**${a.title}**\n> <font color="comment">${a.description}</font>\n\n`;
       });
     }
     await this.markdown(`
-## 🌤 彩云天气
+彩云天气 🌤 <font color="info">${addr || ''}</font>
 
 **降雨提醒：**
 > <font color="warning">${data.result.minutely.description.trim()}</font>
