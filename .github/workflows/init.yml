@@ -2,6 +2,7 @@ name: 'GeekBot'
 
 on:
   push:
+  deployment:
 
 jobs:
   bot:
