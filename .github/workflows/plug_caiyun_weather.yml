@@ -1,6 +1,7 @@
 name: 'v2ex每日最热主题'
 
 on:
+  push:
   schedule:
     - cron: '0 0-15 * * *'
 
@@ -16,3 +17,5 @@ jobs:
       - run: node ./plugins/caiyun_weather.js
         env:
           bot_api: ${{ secrets.bot_api }}
+          caiyun_key: ${{ secrets.caiyun_key }}
+          caiyun_gps: ${{ secrets.caiyun_gps }}

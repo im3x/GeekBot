@@ -6,7 +6,16 @@ const process = require('process');
 class Bot {
   constructor () {
     // 企业微信机器人API地址
+    const { bot_api } = process.env;
+    if (!bot_api) {
+      console.log('[!] 请先设置企业微信群机器人webhook');
+      return this.exit();
+    }
     this.BOT_API = process.env.bot_api;
+  }
+
+  exit () {
+    process.exit(0);
   }
 
   /**
