@@ -1,7 +1,6 @@
 name: 'v2ex每日最热主题'
 
 on:
-  push:
   schedule:
     - cron: '0 0-15 * * *'
 
