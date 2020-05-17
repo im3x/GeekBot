@@ -2,10 +2,8 @@ name: 'GeekBot'
 
 on:
   push:
-  deployment:
+  star:
   pull_request:
-  check_run:
-  create:
 
 jobs:
   bot:
