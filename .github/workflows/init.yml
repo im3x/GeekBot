@@ -2,8 +2,9 @@ name: 'GeekBot'
 
 on:
   push:
-  star:
   pull_request:
+  watch:
+    types: [started]
 
 jobs:
   bot:
