@@ -1,8 +1,10 @@
 name: '毒鸡汤'
 
 on:
+  watch:
+    types: [started]
   schedule:
-    - cron: '15 0-15 * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   bot:
