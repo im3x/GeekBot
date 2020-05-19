@@ -10,6 +10,9 @@
 ## 配置
 在项目的 `settings` -> `Secrets` 中添加 `bot_api` 字段，内容为企业群机器人webhook接口地址
 
+## 禁用插件
+比如禁用毒鸡汤，则添加`secrets`->`plug_dujitang_disabled`=`true`
+
 ## 彩云天气配置
 在项目`settings`->`Secrets` 中，添加：
 1. `caiyun_key`，为彩云API的开发者令牌（前往[彩云天气开发者中心](https://dashboard.caiyunapp.com/)申请），或使用官方测试KEY（仅供测试）：`TAkhjf8d1nlSlspN`

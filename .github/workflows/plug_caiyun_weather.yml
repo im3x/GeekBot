@@ -1,4 +1,4 @@
-name: 'v2ex每日最热主题'
+name: '彩云天气'
 
 on:
   schedule:
