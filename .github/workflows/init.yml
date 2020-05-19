@@ -18,4 +18,5 @@ jobs:
       - run: npm start
         env:
           bot_api: ${{ secrets.bot_api }}
-          secrets: ${{ secrets }}
+          secrets_caiyun_key: ${{ secrets.caiyun_key }}
+          secrets_caiyun_gps: ${{ secrets.caiyun_gps }}
