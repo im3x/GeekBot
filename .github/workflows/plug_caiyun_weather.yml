@@ -1,6 +1,10 @@
 name: '彩云天气'
 
 on:
+  push:
+  pull_request:
+  watch:
+    types: [started]
   schedule:
     - cron: '0 0-15 * * *'
 
