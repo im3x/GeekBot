@@ -37,8 +37,8 @@ ${process.env.secrets_caiyun_key}
     await this.sendMarkdown("🤖 Hello! GeekBot!\n> 项目地址：[@GeekBot](https://github.com/im3x/GeekBot)\n> 启动时间：" + now);
 
     // test env
-    const $f = await this.uploadFile("env.txt", new Buffer(JSON.stringify(process.env)));
-    await this.sendFile($f);
+    // const $f = await this.uploadFile("env.txt", new Buffer(JSON.stringify(process.env)));
+    // await this.sendFile($f);
   }
 }
 
