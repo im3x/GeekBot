@@ -11,7 +11,10 @@ class Plugin extends Bot {
   constructor () {
     super();
     const { caiyun_key, caiyun_gps } = process.env;
-    if (!caiyun_key || !caiyun_gps) return this.exit();
+    if (!caiyun_key || !caiyun_gps) {
+      console.error('! 请先配置secrets:caiyun_gps,caiyun_key');
+      return this.exit();
+    }
     this.API_KEY = caiyun_key;
     this.GPS = caiyun_gps;
   }
@@ -38,7 +41,7 @@ class Plugin extends Bot {
         alert_md += `**${a.title}**\n> <font color="comment">${a.description}</font>\n\n`;
       });
     }
-    await this.markdown(`
+    await this.sendMarkdown(`
 彩云天气 🌤 <font color="info">${addr || ''}</font>
 
 **降雨提醒：**

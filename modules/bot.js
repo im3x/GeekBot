@@ -2,6 +2,7 @@ const axios = require('axios').default;
 const fs = require('fs');
 const crypto = require('crypto');
 const process = require('process');
+const FormData = require('form-data');
 
 class Bot {
   constructor () {
@@ -12,6 +13,7 @@ class Bot {
       return this.exit();
     }
     this.BOT_API = process.env.bot_api;
+    this.BOT_KEY = this.BOT_API.split('key=')[1];
   }
 
   exit () {
@@ -24,11 +26,12 @@ class Bot {
    * @param {object} data 
    */
   async _send (type, data) {
-    await axios.post(this.BOT_API, Object.assign({
+    return await axios.post(this.BOT_API, Object.assign({
       msgtype: type,
     }, data))
   }
 
+  // 计算md5
   _md5 (data) {
     let hash = crypto.createHash('md5');
     return hash.update(data).digest('hex');
@@ -40,8 +43,8 @@ class Bot {
    * @param {array} mentioned_list 要AT的用户ID列表
    * @param {array} mentioned_mobile_list 要AT的用户手机列表
    */
-  async text (content, mentioned_list = [], mentioned_mobile_list = []) {
-    await this._send('text', {
+  async sendText (content, mentioned_list = [], mentioned_mobile_list = []) {
+    return await this._send('text', {
       text: {
         mentioned_list,
         mentioned_mobile_list,
@@ -54,8 +57,8 @@ class Bot {
    * 发送markdown富文本内容
    * @param {string} content 
    */
-  async markdown (content) {
-    await this._send('markdown', {
+  async sendMarkdown (content) {
+    return await this._send('markdown', {
       markdown: {
         content
       }
@@ -63,11 +66,24 @@ class Bot {
   }
 
   /**
-   * 上传图片
-   * @param {string} src 图片的链接SRC，可以是代码仓库路径，也可以是URL
+   * 发送文件，media_id为上传文件后获得的id
+   * @param {string} media_id 临时文件的id，也可以直接传递this.uploadFile后的返回值
    */
-  async image (src) {
-    await new Promise(RES => {
+  async sendFile (media_id) {
+    if (typeof media_id === 'object') media_id = media_id.media_id;
+    return await this._send("file", {
+      file: {
+        media_id
+      }
+    });
+  }
+
+  /**
+   * 发送图片
+   * @param {string} src 图片路径，可以是本地仓库（path/file.jpg），或者远程URL（http..
+   */
+  async sendImage (src) {
+    return await new Promise(RES => {
       if (src.startsWith('http')) {
         // 远程图片
         axios.get(src, {
@@ -82,7 +98,7 @@ class Bot {
     }).then(async data => {
       const _md5 = this._md5(data);
       const _b64 = Buffer.from(data).toString("base64");
-      await this._send("image", {
+      return await this._send("image", {
         image: {
           base64: _b64,
           md5: _md5
@@ -91,17 +107,40 @@ class Bot {
     });
   }
 
-  // 发送文件
-  file () {}
   /**
    * 发送文章列表
    * @param {array} articles 文章列表（title,description,url,picurl）
    */
-  async news (articles) {
-    await this._send('news', {
+  async sendNews (articles) {
+    return await this._send('news', {
       news: {
         articles
       }
+    })
+  }
+
+  /**
+   * 上传文件，返回文件media_id，media_id仅三天内有效，且只能在同一个企业应用内共享
+   * @param {string} filename 文件名称，在文件卡片显示
+   * @param {buffer} data 文件内容
+   */
+  async uploadFile (filename, data) {
+    const UPLOAD_API = `https://qyapi.weixin.qq.com/cgi-bin/webhook/upload_media?key=${this.BOT_KEY}&type=file`;
+    const file = new FormData();
+    file.append("media", data, {
+      filename,
+      knownLength: Buffer.from(data).byteLength
+    });
+
+    return await axios({
+      method: 'POST',
+      url: UPLOAD_API,
+      data: file,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(async r => {
+      return await r.data;
     })
   }
 }

@@ -8,7 +8,6 @@ class Plugin extends Bot {
     this.API = "https://www.v2ex.com/api/topics/hot.json";
   }
   run () {
-    this.text("即将推送 [v2ex] 今日最热主题列表..")
     axios.get(this.API).then(res => {
       const { data } = res;
       const articles = [];
@@ -20,7 +19,7 @@ class Plugin extends Bot {
           picurl: d.member.avatar_large.replace('_mini', '_large')
         })
       });
-      this.news(articles.slice(0, 8));
+      this.sendNews(articles.slice(0, 8));
     })
   }
 }

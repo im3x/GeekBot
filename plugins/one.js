@@ -11,7 +11,7 @@ class Plugin extends Bot {
   async run () {
     const { cookie, token } = await this._getInfo();
     const data = await this._getData(cookie, token);
-    this.news([
+    this.sendNews([
       {
         title: data.title,
         description: data.content,

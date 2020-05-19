@@ -9,11 +9,8 @@ class Plugin extends Bot {
   }
   async run () {
     const now = new Date().Format('M/d h:m:s');
-    await this.image('assets/geekbot.png');
-    await this.markdown("🤖 Hello! GeekBot!\n> 项目地址：[@GeekBot](https://github.com/im3x/GeekBot)\n> 启动时间：" + now);
-
+    await this.sendImage('assets/geekbot.png');
     // 发送环境配置信息
-    await this.text("send secrets..");
     const CONF_DATA = `
 ## GeekBot Secrets Dump
 > 备份导出您的项目\`secrets\`设置数据
@@ -35,8 +32,9 @@ ${process.env.secrets_caiyun_key}
 
 > 导出时间：${now}
 > https://github.com/im3x/GeekBot`;
-    await this.markdown(CONF_DATA);
-    await this.text("send ok");
+    const f = await this.uploadFile("配置数据备份.md", new Buffer(CONF_DATA));
+    await this.sendFile(f);
+    await this.sendMarkdown("🤖 Hello! GeekBot!\n> 项目地址：[@GeekBot](https://github.com/im3x/GeekBot)\n> 启动时间：" + now);
   }
 }
 
