@@ -1,8 +1,6 @@
 name: '毒鸡汤'
 
 on:
-  push:
-  pull_request:
   watch:
     types: [started]
   schedule:

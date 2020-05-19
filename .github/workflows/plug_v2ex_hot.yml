@@ -1,8 +1,6 @@
 name: 'v2ex每日最热主题'
 
 on:
-  push:
-  pull_request:
   watch:
     types: [started]
   schedule:

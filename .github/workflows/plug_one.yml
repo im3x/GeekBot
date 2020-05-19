@@ -1,8 +1,6 @@
 name: '一个图文ONE'
 
 on:
-  push:
-  pull_request:
   watch:
     types: [started]
   schedule:

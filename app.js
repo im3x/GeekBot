@@ -7,10 +7,7 @@ class Plugin extends Bot {
   constructor () {
     super();
   }
-  run () {
-    setTimeout(() => this.start(), 5000);
-  }
-  async start () {
+  async run () {
     const now = new Date().Format('M/d h:m:s');
     await this.sendImage('assets/geekbot.png');
     // 发送环境配置信息
