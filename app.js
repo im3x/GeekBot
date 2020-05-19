@@ -7,7 +7,10 @@ class Plugin extends Bot {
   constructor () {
     super();
   }
-  async run () {
+  run () {
+    setTimeout(() => this.start(), 5000);
+  }
+  async start () {
     const now = new Date().Format('M/d h:m:s');
     await this.sendImage('assets/geekbot.png');
     // 发送环境配置信息
@@ -32,7 +35,7 @@ ${process.env.secrets_caiyun_key}
 
 > 导出时间：${now}
 > https://github.com/im3x/GeekBot`;
-    const f = await this.uploadFile("配置数据备份.md", new Buffer(CONF_DATA));
+    const f = await this.uploadFile("配置数据备份.md", Buffer.from(CONF_DATA));
     await this.sendFile(f);
     await this.sendMarkdown("🤖 Hello! GeekBot!\n> 项目地址：[@GeekBot](https://github.com/im3x/GeekBot)\n> 启动时间：" + now);
 
