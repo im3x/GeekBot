@@ -1,21 +1,21 @@
 {
-  "name": "github-actions-study",
+  "name": "GeekBot",
   "version": "1.0.0",
-  "description": "just for study",
+  "description": "企业微信机器人摸鱼神器",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/safe-dog/github-actions-study.git"
+    "url": "git+https://github.com/im3x/GeekBot.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/safe-dog/github-actions-study/issues"
+    "url": "https://github.com/im3x/GeekBot/issues"
   },
-  "homepage": "https://github.com/safe-dog/github-actions-study#readme",
+  "homepage": "https://github.com/im3x/GeekBot#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "form-data": "^3.0.0"
