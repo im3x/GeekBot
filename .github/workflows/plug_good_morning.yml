@@ -1,0 +1,21 @@
+name: '早安心语'
+
+on:
+  watch:
+    types: [started]
+  schedule:
+    - cron: '5 0-15 * * *'
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm install
+      - run: node ./plugins/good_morning.js
+        env:
+          bot_api: ${{ secrets.bot_api }}
+          good_morning_key: ${{ secrets.good_morning_key }}

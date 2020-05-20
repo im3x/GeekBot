@@ -11,6 +11,7 @@
 - v2ex 每日最热帖子（v2ex_hot, 每天18:00推送）
 - 彩云天气预报（caiyun_weather，每小时整推送）
 - ONE一个图文（one，每天08:20推送）
+- 早安心语（good_morning，每天 08:05）
 
 ## 配置
 在项目的 `settings` -> `Secrets` 中添加 `bot_api` 字段，内容为企业群机器人webhook接口地址
@@ -24,6 +25,9 @@
 
 `caiyun_gps` 格式如下：
 > `111.22,333.44@地址1|444.55,555.66@地址2`
+
+### 早安心语配置
+需要用到[天行数据](https://www.tianapi.com/gethttp/143) 接口，你需要自行前往注册登录，申请api后，得到一个key，设置到仓库的secrets中，名称为：`good_morning_key`
 
 ## 禁用插件
 比如禁用毒鸡汤，则添加`secrets`->`plug_dujitang_disabled`=`true`
