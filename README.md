@@ -4,6 +4,7 @@
 
 ![](assets/geekbot.png)
 
+![](https://i.loli.net/2020/05/20/MgEONhb2WKuQ6c4.gif)
 
 ### 目前支持如下插件：
 - 毒鸡汤文本（dujitang，每1小时推送）
