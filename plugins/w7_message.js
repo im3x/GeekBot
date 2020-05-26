@@ -5,12 +5,15 @@ const Cache = require('../modules/cache');
 const axios = require('axios').default;
 
 class Plugin extends Bot {
+  constructor () {
+    this.COOKIE = process.env.w7_cookie;
+    if (!this.COOKIE) return this.exit();
+  }
   run () {
     const cache = new Cache();
-    const cookie = process.env.w7_cookie;
     axios.get('https://user.w7.cc/v1/message/list?page=1', {
       headers: {
-        'Cookie': cookie
+        'Cookie': this.COOKIE
       }
     }).then(res => {
       const { data } = res.data;
@@ -21,7 +24,6 @@ class Plugin extends Bot {
       this.sendMarkdown(`# ${d.type_text}\n> ${d.create_date_format}\n\n${d.detail}`);
       cache.set(d.createtime, "ok");
     });
-    // this.sendText("ok");
   }
 }
 
