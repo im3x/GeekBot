@@ -1,0 +1,21 @@
+name: '微擎信息提醒'
+
+on:
+  watch:
+    types: [started]
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm install
+      - run: node ./plugins/w7_message.js
+        env:
+          bot_api: ${{ secrets.bot_api }}
+          w7_cookie: ${{ secrets.w7_cookie }}
