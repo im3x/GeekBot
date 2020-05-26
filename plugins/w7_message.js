@@ -6,6 +6,7 @@ const axios = require('axios').default;
 
 class Plugin extends Bot {
   constructor () {
+    super();
     this.COOKIE = process.env.w7_cookie;
     if (!this.COOKIE) return this.exit();
   }
